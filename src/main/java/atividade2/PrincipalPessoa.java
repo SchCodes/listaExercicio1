@@ -1,5 +1,10 @@
 package atividade2;
 
+/**
+ *
+ * @author Ericson, Max
+ */
+
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
