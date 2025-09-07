@@ -10,16 +10,23 @@ package atividade3;
  */
 public class Estoque {
     
+    // Atributos
     private String nomeProduto;
-    private float valor;
+    private double valor;
     private int quantidade;
-    
-    public Estoque(String n, float v, int q) {
-        this.nomeProduto = n;
-        this.valor = v;
-        this.quantidade = q;
+
+    // Construtor vazio
+    public Estoque() {
     }
 
+    // Construtor com parâmetros
+    public Estoque(String nomeProduto, double valor, int quantidade) {
+        this.nomeProduto = nomeProduto;
+        this.valor = valor;
+        this.quantidade = quantidade;
+    }
+
+    // Métodos getters e setters (encapsulamento)
     public String getNomeProduto() {
         return nomeProduto;
     }
@@ -28,11 +35,11 @@ public class Estoque {
         this.nomeProduto = nomeProduto;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
@@ -43,19 +50,31 @@ public class Estoque {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    
-    public void imprimir(){
+
+    // Método imprimir
+    public void imprimir() {
         System.out.println(
-                "Nome produto: " + nomeProduto + 
-                "\nValor: " + valor +
-                "\nQuantidade: " + quantidade
+                "\n==============================" +
+                "\nProduto: " + nomeProduto +
+                "\nValor: R$ " + valor +
+                "\nQuantidade em estoque: " + quantidade +
+                "\n=============================="
         );
-        
-    public boolean verificarDisponibilidade(int n) {
-        
-    };
-        
     }
-    
-    
+
+    // Método verificarDisponibilidade
+    public boolean verificarDisponibilidade(int quantidadeSolicitada) {
+        return (quantidade > 0 && quantidade >= quantidadeSolicitada);
+    }
+
+    // Método removerProdutos
+    public void removerProdutos(int quantidadeRemover) {
+        if (verificarDisponibilidade(quantidadeRemover)) {
+            quantidade -= quantidadeRemover;
+            System.out.println("\n✅ " + quantidadeRemover + " unidade(s) removida(s) do produto " + nomeProduto + ".");
+        } else {
+            System.out.println("Você tentou remover " + quantidadeRemover + " itens.");
+            System.out.println("\n❌ Não há estoque suficiente do produto " + nomeProduto + ".");
+        }
+    }
 }
